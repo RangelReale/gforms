@@ -43,6 +43,8 @@ type Field interface {
 	SetValidationError(error)
 	ValidationError() error
 
+	RawValue() interface{}
+
 	Reset()
 	Render(...string) template.HTML
 }
@@ -204,6 +206,10 @@ func (f *BaseField) SetValidationError(err error) {
 
 func (f *BaseField) ValidationError() error {
 	return f.validationError
+}
+
+func (f *BaseField) RawValue() interface{} {
+	return f.iValue
 }
 
 func (f *BaseField) StringValue() string {

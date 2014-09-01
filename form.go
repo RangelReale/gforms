@@ -116,6 +116,13 @@ func IsFormValid(form Form, formValues url.Values) bool {
 	return IsValid(form, getValue)
 }
 
+func IsFormSelfValid(form Form) bool {
+	getValue := func(f Field) interface{} {
+		return f.RawValue()
+	}
+	return IsValid(form, getValue)
+}
+
 func IsMultipartFormValid(form Form, multipartForm *multipart.Form) bool {
 	getValue := func(f Field) interface{} {
 		if f.IsMultipart() {
