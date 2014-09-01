@@ -237,6 +237,8 @@ func (f *StringField) Value() string {
 }
 
 func (f *StringField) Validate(rawValue interface{}) error {
+	f.iValue = rawValue
+
 	value := fmt.Sprint(rawValue)
 
 	valueLen := len(value)
@@ -340,6 +342,8 @@ func (f *Int64Field) Value() int64 {
 }
 
 func (f *Int64Field) Validate(rawValue interface{}) error {
+	f.iValue = rawValue
+
 	value, err := strconv.ParseInt(fmt.Sprint(rawValue), 10, 64)
 	if err != nil {
 		return err
@@ -425,6 +429,8 @@ func (f *BoolField) Value() bool {
 }
 
 func (f *BoolField) Validate(rawValue interface{}) error {
+	f.iValue = rawValue
+
 	value := fmt.Sprint(rawValue) == "true"
 
 	if err := f.ApplyValidators(value); err != nil {

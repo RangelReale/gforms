@@ -162,3 +162,7 @@ func (f *BaseForm) SetErrors(errors map[string]error) {
 func (f *BaseForm) Errors() map[string]error {
 	return f.errors
 }
+
+func (f *BaseForm) SetError(fieldname string, err error) {
+	f.errors[fieldname] = err
+}

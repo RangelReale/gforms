@@ -92,7 +92,7 @@ func Render(field Field, attrs ...string) (template.HTML, error) {
 	var t *template.Template
 	switch widget := field.Widget().(type) {
 	case *HiddenWidget:
-		return RenderField(field, attrs)
+		return RenderField(field, attrs...)
 	case *CheckboxWidget:
 		t = getTemplate(CheckboxTemplatePath)
 	case *RadioWidget:
@@ -131,7 +131,7 @@ func RenderLabel(f Field) (template.HTML, error) {
 	return template.HTML(s), nil
 }
 
-func RenderField(f Field, attrs []string) (template.HTML, error) {
+func RenderField(f Field, attrs ...string) (template.HTML, error) {
 	return f.Render(attrs...), nil
 }
 
