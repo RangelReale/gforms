@@ -146,6 +146,9 @@ func (f *BaseField) Label() string {
 
 func (f *BaseField) SetWidget(widget Widget) {
 	f.widget = widget
+	attrs := f.Widget().Attrs()
+	attrs.Set("id", f.name)
+	attrs.Set("name", f.name)
 }
 
 func (f *BaseField) Widget() Widget {
