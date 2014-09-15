@@ -172,4 +172,5 @@ func (f *BaseForm) Errors() map[string]error {
 
 func (f *BaseForm) SetError(fieldname string, err error) {
 	f.errors[fieldname] = err
+	f.fields[fieldname].SetValidationError(err)
 }
