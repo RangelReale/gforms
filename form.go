@@ -43,6 +43,8 @@ type Form interface {
 
 	SetErrors(map[string]error)
 	Errors() map[string]error
+
+	Validate() bool
 }
 
 func InitForm(form Form) error {
@@ -95,7 +97,7 @@ func IsValid(f Form, getValue valueGetterFunc) bool {
 	}
 	f.SetErrors(errs)
 
-	return len(f.Errors()) == 0
+	return f.Validate() && len(f.Errors()) == 0
 }
 
 func IsFormValid(form Form, formValues url.Values) bool {
@@ -173,4 +175,8 @@ func (f *BaseForm) Errors() map[string]error {
 func (f *BaseForm) SetError(fieldname string, err error) {
 	f.errors[fieldname] = err
 	f.fields[fieldname].SetValidationError(err)
+}
+
+func (f *BaseForm) Validate() bool {
+	return true
 }
