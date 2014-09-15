@@ -76,8 +76,6 @@ func IsFieldValid(f Field, rawValue interface{}) bool {
 		if f.IsRequired() {
 			f.SetValidationError(ErrRequired)
 			return false
-		} else {
-			return true
 		}
 	}
 
